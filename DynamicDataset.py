@@ -3,6 +3,7 @@ from torch.utils import data
 import random
 from DBcm import UseDatabase
 
+
 class DynamicDataset(data.Dataset):
 
     def __init__(self, dataset_index, database_config, shuffle=False, batch_size=64):
@@ -15,7 +16,7 @@ class DynamicDataset(data.Dataset):
         with UseDatabase(self.database_config['dbconfig']) as cursor:
             _SQL = """SELECT max({index}) FROM `timeseries`""".format(index=self.dataset_index)
             cursor.execute(_SQL)
-            self.dataset_split_length = cursor.fetchall()[0][0]+1
+            self.dataset_split_length = cursor.fetchall()[0][0] + 1
         return self.dataset_split_length
         # return 5
 
@@ -38,8 +39,8 @@ class DynamicDataset(data.Dataset):
         return X, y
 
     def standardization(self, features):
-        _X=torch.FloatTensor(features)
-        _X_mean = _X.mean(dim=1).view(_X.shape[0],1)
-        _X_std = _X.std(dim=1).view(_X.shape[0],1)
-        X=(_X-_X_mean)/_X_std
+        _X = torch.FloatTensor(features)
+        _X_mean = _X.mean(dim=1).view(_X.shape[0], 1)
+        _X_std = _X.std(dim=1).view(_X.shape[0], 1)
+        X = (_X - _X_mean) / _X_std
         return X
