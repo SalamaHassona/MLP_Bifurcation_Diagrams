@@ -4,7 +4,7 @@ import torch
 import argparse
 
 
-class DataGenerator():
+class DataGenerator:
 
     def __init__(self, labeled_data_file, data_util_file, threshold=23,
                  dt=0.01, tmin=1800, tmax=2000, L=1.0):

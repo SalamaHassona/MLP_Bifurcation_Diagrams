@@ -31,7 +31,7 @@ if __name__ == "__main__":
     p.add_argument("--L", type=float, default=1.0)
     p.add_argument("--tmin", type=int, default=1800)
     p.add_argument("--tmax", type=int, default=2000)
-    p.add_argument("--ts_nth_element", type=int, default=64)
+    p.add_argument("--ts_nth_element", type=int, default=8)
     p.add_argument("--threshold", type=int, default=23)
     p.add_argument("--n_jobs", type=int, default=20)
     p.add_argument("--n_neighbors", type=int, default=1)
